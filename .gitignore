@@ -1,0 +1,69 @@
+# === SYSTEM / EDITORS ===
+.vscode/
+.DS_Store
+Thumbs.db
+
+# === NODE / REACT ===
+node_modules/
+dist/
+build/
+.env
+*.log
+.vercel
+
+# === PYTHON ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+*.egg-info/
+pip-wheel-metadata/
+
+# === ARCHIVE / UNUSED DIRECTORIES ===
+BACKUPS/
+PRs_ONLY_RUN_HERE/
+php_backend/
+UserController_TEMP.php
+VoiceRecPoC/
+Z_KIRILL/
+Z_NATASHA/
+VIDEO_DEMO.mp4
+start_project.ps1
+
+# === OLD FRONTEND VERSIONS ===
+FRONTEND/ver0.1/
+FRONTEND/ver0.2/
+
+# === MISC ===
+*.bak
+*.tmp
+*.sql
+*.7z
+*.docx
+
+
+
+# CRA_TEMPLATE
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
