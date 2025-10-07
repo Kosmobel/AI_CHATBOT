@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
