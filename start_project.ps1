@@ -4,10 +4,10 @@
 ########################
 
 # === настраиваемые переменные ==========================
-$frontendDir          = "frontend"      # папка с CRA
-$backendDir           = "backend"       # папка с Express
-$frontendStartCommand = "start"         # npm start (CRA)
-$backendStartCommand  = "node server.js" # или "start", если в package.json прописан
+$frontendDir          = "FRONTEND"        # новая папка фронтенда
+$backendDir           = "nodejs_backend"  # новая папка бэкенда
+$frontendStartCommand = "start"           # npm start (CRA)
+$backendStartCommand  = "node server.js"  # или "start", если в package.json прописан
 $projectName          = "Educational Chatbot"
 $frontendURL          = "http://localhost:3000"
 $backendURL           = "http://localhost:3001"
@@ -38,7 +38,7 @@ function Install-Dependencies {
             return $false
         }
     } catch {
-        Write-Host "npm install failed for $name: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "npm install failed for ${name}: $($_.Exception.Message)" -ForegroundColor Red
         Pop-Location
         return $false
     }
@@ -56,7 +56,7 @@ function Start-Server {
         Start-Process powershell -ArgumentList "-NoExit", "-Command", $command -WindowStyle Normal
         Write-Host "$name started in new window!" -ForegroundColor Green
     } catch {
-        Write-Host "Error starting $name: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "Error starting ${name}: $($_.Exception.Message)" -ForegroundColor Red
         Pop-Location
         return $false
     }

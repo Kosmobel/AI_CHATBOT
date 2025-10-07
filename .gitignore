@@ -23,6 +23,7 @@ pip-wheel-metadata/
 
 # === ARCHIVE / UNUSED DIRECTORIES ===
 BACKUPS/
+DATABASE/
 PRs_ONLY_RUN_HERE/
 php_backend/
 UserController_TEMP.php
