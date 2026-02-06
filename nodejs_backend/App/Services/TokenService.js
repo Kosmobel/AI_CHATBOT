@@ -40,11 +40,14 @@ class TokenService {
             token_type: decoded.token_type,
         };
         } catch (err) {
-        return null;
+            //TODO: сделать нормальное сообщение об ошибке
+            return null;
         }
     }
 
     static async isRefreshTokenValid(user_id, refresh_token) {
+        //если в checkUserRefreshToken выдало false
+        if (!refresh_token) return false;
         try {
         const result = await dbService.executeQuery(
             'SELECT expires_at FROM refresh_tokens WHERE token = $1 AND user_id = $2 AND expires_at > NOW()',
@@ -52,8 +55,8 @@ class TokenService {
         );
         return result.rowCount > 0;
         } catch (err) {
-        console.error(err);
-        return false;
+            console.error(err);
+            return false;
         }
     }
 
@@ -64,6 +67,7 @@ class TokenService {
             return decoded;
         }
         catch(error) {
+            //TODO: подумать над возвратом статуса
             console.error(error.message);
         }
     }
@@ -86,8 +90,10 @@ class TokenService {
         'INSERT INTO refresh_tokens (user_id, token, expires_at, created_at) VALUES ($1, $2, $3, $4)',
         [user_id, refresh_token, tokenData.expires_at, tokenData.issued_at]
         );
+        //TODO: сделать возврат статуса
     }
 
+    //TODO: добавить id чтобы проверять юзера
     static async deleteRefreshToken(refresh_token){
         await dbService.executeQuery('DELETE FROM refresh_tokens WHERE token = $1', [refresh_token]);
         console.log('Удален токен из БД: ', refresh_token);
@@ -95,7 +101,7 @@ class TokenService {
 
     static async checkUserRefreshToken(user_id) {
         try {
-            console.log('Entered checkUsrRefresh');
+            console.log('Entered checkUserRefresh');
 
             const checkQuery = 'SELECT token FROM refresh_tokens WHERE user_id = $1';
             const checkStmt = await dbService.executeQuery(checkQuery, [user_id]);
@@ -105,6 +111,7 @@ class TokenService {
             if(checkStmt.rowCount > 0){
                 refresh_token = checkStmt.rows[0].token;
             }
+            else return false;
 
             //console.log('CheckSTMT: ' + checkStmt);
             //console.log('Refresh token from DB: ', refresh_token);
